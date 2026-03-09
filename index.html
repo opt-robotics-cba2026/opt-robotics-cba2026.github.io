@@ -1,15 +1,734 @@
 <!DOCTYPE html>
-<html>
+<html lang="pt-BR">
 <head>
-<title>Special Session CBA 2026</title>
-</head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Métodos Baseados em Otimização para Controle e Planejamento de Sistemas Robóticos | CBA 2026</title>
+  <meta
+    name="description"
+    content="Sessão Especial do CBA 2026 sobre métodos baseados em otimização para controle e planejamento de sistemas robóticos."
+  />
+  <style>
+    :root{
+      --blue-dark:#112e72;
+      --blue:#234bb7;
+      --purple:#6a3fc7;
+      --purple-dark:#4e2fa2;
+      --pink:#eb4d94;
+      --pink-2:#ff4f97;
+      --text:#ffffff;
+      --body:#f3f5fb;
+      --card:#ffffff;
+      --ink:#182033;
+      --muted:#5b6375;
+      --line:rgba(17,46,114,0.12);
+      --shadow:0 18px 45px rgba(20, 34, 70, 0.16);
+      --radius:24px;
+      --max:1180px;
+    }
 
+    *{
+      box-sizing:border-box;
+    }
+
+    html{
+      scroll-behavior:smooth;
+    }
+
+    body{
+      margin:0;
+      font-family: Arial, Helvetica, sans-serif;
+      background:var(--body);
+      color:var(--ink);
+      line-height:1.6;
+    }
+
+    img{
+      max-width:100%;
+      display:block;
+    }
+
+    a{
+      color:inherit;
+      text-decoration:none;
+    }
+
+    .wrap{
+      width:min(var(--max), calc(100% - 32px));
+      margin:0 auto;
+    }
+
+    .top-strip{
+      background:linear-gradient(90deg, #0d2256, #183b93);
+      height:18px;
+    }
+
+    .hero{
+      position:relative;
+      overflow:hidden;
+      background:
+        linear-gradient(140deg, rgba(17,46,114,0.96) 0%, rgba(74,50,160,0.93) 52%, rgba(235,77,148,0.88) 100%);
+      color:var(--text);
+      padding-bottom:52px;
+    }
+
+    .hero::before{
+      content:"";
+      position:absolute;
+      top:-140px;
+      right:-120px;
+      width:720px;
+      height:360px;
+      background:rgba(255,255,255,0.09);
+      border-radius:0 0 0 100%;
+      transform:rotate(-8deg);
+    }
+
+    .hero::after{
+      content:"";
+      position:absolute;
+      left:-160px;
+      bottom:-220px;
+      width:1100px;
+      height:420px;
+      background:rgba(255,255,255,0.08);
+      border-radius:50%;
+    }
+
+    .logo-band{
+      position:relative;
+      z-index:2;
+      background:#ffffff;
+      border-radius:0 0 28px 28px;
+      box-shadow:0 10px 30px rgba(10,20,40,0.12);
+      padding:18px 24px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:24px;
+      margin-bottom:34px;
+    }
+
+    .logo-pair{
+      display:flex;
+      align-items:center;
+      gap:20px;
+      flex-wrap:wrap;
+    }
+
+    .logo-pill{
+      background:#ffffff;
+      border-radius:999px;
+      padding:10px 18px;
+      border:1px solid rgba(17,46,114,0.10);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      min-height:88px;
+    }
+
+    .logo-pill img{
+      height:64px;
+      width:auto;
+      object-fit:contain;
+    }
+
+    .top-nav{
+      display:flex;
+      gap:18px;
+      flex-wrap:wrap;
+      justify-content:flex-end;
+      align-items:center;
+      color:#183b93;
+      font-weight:700;
+      font-size:14px;
+    }
+
+    .top-nav a:hover{
+      color:var(--pink);
+    }
+
+    .hero-content{
+      position:relative;
+      z-index:2;
+      display:block;
+    }
+
+    .hero-left{
+      padding:8px 0 0;
+      max-width:100%;
+    }
+
+    .badge{
+      display:inline-block;
+      margin-bottom:18px;
+      background:rgba(255,255,255,0.14);
+      border:1px solid rgba(255,255,255,0.22);
+      border-radius:999px;
+      padding:8px 14px;
+      font-size:13px;
+      font-weight:700;
+      letter-spacing:0.2px;
+    }
+
+    h1{
+      margin:0 0 18px;
+      font-size:52px;
+      line-height:1.05;
+      letter-spacing:-0.8px;
+      max-width:1000px;
+    }
+
+    .hero-text{
+      font-size:19px;
+      color:rgba(255,255,255,0.95);
+      max-width:980px;
+      margin:0 0 24px;
+    }
+
+    .cta-row{
+      display:flex;
+      gap:14px;
+      flex-wrap:wrap;
+      align-items:center;
+      margin-top:18px;
+    }
+
+    .btn{
+      display:inline-block;
+      padding:14px 24px;
+      border-radius:999px;
+      font-weight:700;
+      transition:transform 0.16s ease, box-shadow 0.16s ease, opacity 0.16s ease;
+    }
+
+    .btn:hover{
+      transform:translateY(-1px);
+    }
+
+    .btn-primary{
+      background:var(--pink-2);
+      color:#ffffff;
+      box-shadow:0 12px 28px rgba(255,79,151,0.28);
+    }
+
+    .btn-secondary{
+      background:rgba(255,255,255,0.12);
+      color:#ffffff;
+      border:1px solid rgba(255,255,255,0.22);
+    }
+
+    section{
+      padding:56px 0;
+    }
+
+    .section-head{
+      margin-bottom:24px;
+    }
+
+    .section-head h2{
+      margin:0 0 10px;
+      font-size:34px;
+      line-height:1.12;
+      color:#15357f;
+      letter-spacing:-0.4px;
+    }
+
+    .section-head p{
+      margin:0;
+      font-size:17px;
+      color:var(--muted);
+      max-width:880px;
+    }
+
+    .grid-2{
+      display:grid;
+      grid-template-columns:1.2fr 0.8fr;
+      gap:26px;
+    }
+
+    .card{
+      background:var(--card);
+      border-radius:var(--radius);
+      box-shadow:var(--shadow);
+      border:1px solid var(--line);
+      padding:28px;
+    }
+
+    .card h3{
+      margin:0 0 14px;
+      font-size:24px;
+      color:#183b93;
+    }
+
+    .card p{
+      margin:0 0 14px;
+      font-size:16px;
+      color:#2f3950;
+    }
+
+    .highlight{
+      margin-top:16px;
+      padding:16px 18px;
+      border-left:5px solid var(--pink);
+      border-radius:14px;
+      background:linear-gradient(135deg, rgba(106,63,199,0.07), rgba(235,77,148,0.08));
+      color:#334155;
+    }
+
+    .bullet-list{
+      margin:0;
+      padding-left:22px;
+    }
+
+    .bullet-list li{
+      margin:10px 0;
+      color:#2f3950;
+    }
+
+    .bullet-list li::marker{
+      color:var(--purple);
+    }
+
+    .topics-card{
+      background:linear-gradient(180deg, rgba(35,75,183,0.04), rgba(106,63,199,0.05));
+    }
+
+    .organizers{
+      display:grid;
+      grid-template-columns:repeat(2, minmax(0, 1fr));
+      gap:24px;
+    }
+
+    .person{
+      background:#ffffff;
+      border:1px solid var(--line);
+      border-radius:var(--radius);
+      box-shadow:var(--shadow);
+      padding:28px;
+    }
+
+    .person h3{
+      margin:0 0 8px;
+      font-size:23px;
+      color:#183b93;
+    }
+
+    .person .affil{
+      margin-bottom:14px;
+      color:#d63384;
+      font-weight:700;
+    }
+
+    .person p{
+      margin:0;
+      color:#344055;
+    }
+
+    .person-top{
+      display:flex;
+      align-items:flex-start;
+      gap:18px;
+      margin-bottom:16px;
+    }
+
+    .person-photo{
+      width:108px;
+      height:108px;
+      border-radius:50%;
+      overflow:hidden;
+      flex-shrink:0;
+      border:4px solid rgba(35,75,183,0.10);
+      box-shadow:0 10px 24px rgba(25,40,80,0.12);
+      background:linear-gradient(135deg, rgba(35,75,183,0.10), rgba(235,77,148,0.12));
+      display:flex;
+      align-items:center;
+      justify-content:center;
+    }
+
+    .person-photo img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+    }
+
+    .person-main{
+      flex:1;
+      min-width:0;
+    }
+
+    .person-links{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      margin-top:14px;
+    }
+
+    .person-links a{
+      width:40px;
+      height:40px;
+      border-radius:50%;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      background:#ffffff;
+      border:1px solid rgba(17,46,114,0.12);
+      box-shadow:0 8px 18px rgba(25,40,80,0.08);
+      transition:transform 0.16s ease, box-shadow 0.16s ease, border-color 0.16s ease;
+    }
+
+    .person-links a:hover{
+      transform:translateY(-1px);
+      border-color:rgba(235,77,148,0.45);
+      box-shadow:0 10px 22px rgba(25,40,80,0.12);
+    }
+
+    .person-links img{
+      width:20px;
+      height:20px;
+      object-fit:contain;
+    }
+
+    .submission{
+      background:linear-gradient(135deg, var(--blue-dark), var(--purple-dark));
+      color:#ffffff;
+      border-radius:30px;
+      box-shadow:0 20px 44px rgba(18,31,63,0.22);
+      padding:34px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:24px;
+    }
+
+    .submission h2{
+      margin:0 0 10px;
+      font-size:34px;
+      line-height:1.1;
+    }
+
+    .submission p{
+      margin:0;
+      color:rgba(255,255,255,0.92);
+      max-width:760px;
+      font-size:17px;
+    }
+
+    .submission .btn{
+      flex-shrink:0;
+    }
+
+    .footer{
+      background:#ffffff;
+      border-top:1px solid rgba(17,46,114,0.10);
+      margin-top:18px;
+    }
+
+    .footer-logos{
+      padding:8px 0 34px;
+      display:grid;
+      grid-template-columns:repeat(3, minmax(0, 1fr));
+      gap:20px;
+      align-items:center;
+    }
+
+    .footer-logo-box{
+      background:#ffffff;
+      border:1px solid rgba(17,46,114,0.10);
+      border-radius:20px;
+      padding:18px;
+      min-height:118px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      box-shadow:0 10px 24px rgba(25,40,80,0.06);
+    }
+
+    .footer-logo-box img{
+      max-height:70px;
+      width:auto;
+      object-fit:contain;
+    }
+
+    .footer-logo-box.logo-ufmg img{
+      max-height:62px;
+    }
+
+    .footer-logo-box.logo-unibg img{
+      max-height:78px;
+    }
+
+    @media (max-width: 980px){
+      .grid-2,
+      .organizers{
+        grid-template-columns:1fr;
+      }
+
+      h1{
+        font-size:40px;
+      }
+
+      .submission{
+        flex-direction:column;
+        align-items:flex-start;
+      }
+
+      .footer-logos{
+        grid-template-columns:1fr;
+      }
+    }
+
+    @media (max-width: 640px){
+      .wrap{
+        width:min(var(--max), calc(100% - 20px));
+      }
+
+      .logo-band{
+        padding:16px;
+        border-radius:0 0 22px 22px;
+      }
+
+      .logo-pill{
+        min-height:74px;
+        padding:8px 14px;
+      }
+
+      .logo-pill img{
+        height:50px;
+      }
+
+      .top-nav{
+        gap:12px;
+        font-size:13px;
+      }
+
+      h1{
+        font-size:31px;
+      }
+
+      .hero-text{
+        font-size:17px;
+      }
+
+      .section-head h2,
+      .submission h2{
+        font-size:27px;
+      }
+
+      .card,
+      .person,
+      .submission{
+        padding:22px;
+      }
+
+      .person-top{
+        flex-direction:column;
+        align-items:center;
+        text-align:center;
+      }
+
+      .person-main{
+        width:100%;
+      }
+
+      .person-links{
+        justify-content:center;
+      }
+    }
+  </style>
+</head>
 <body>
 
-<h1>Optimization-Based Methods for Control and Planning of Robotic Systems</h1>
+  <div class="top-strip"></div>
 
-<p>Special Session – CBA 2026</p>
+  <header class="hero">
+    <div class="wrap">
+      <div class="logo-band">
+        <div class="logo-pair">
+          <div class="logo-pill">
+            <img src="cba2026.png" alt="CBA 2026">
+          </div>
+          <div class="logo-pill">
+            <img src="sba.png" alt="SBA">
+          </div>
+        </div>
+
+        <nav class="top-nav">
+          <a href="#sobre">Sobre</a>
+          <a href="#topicos">Tópicos</a>
+          <a href="#organizadores">Organizadores</a>
+          <a href="#submissao">Submissão</a>
+        </nav>
+      </div>
+
+      <div class="hero-content">
+        <div class="hero-left">
+          <div class="badge">Sessão Especial • XXVI Congresso Brasileiro de Automática</div>
+          <h1>Métodos Baseados em Otimização para Controle e Planejamento de Sistemas Robóticos</h1>
+          <p class="hero-text">
+            Esta Sessão Especial Aberta tem como objetivo reunir contribuições que avancem o estado da arte em métodos baseados em otimização aplicados a sistemas robóticos, contemplando fundamentos teóricos, garantias formais de estabilidade e segurança, estratégias numéricas para implementação em tempo real e validação experimental em plataformas reais.
+          </p>
+          <div class="cta-row">
+            <a class="btn btn-primary" href="https://sites.usp.br/cba2026/submissao-de-artigos/" target="_blank" rel="noopener noreferrer">Submeta seu artigo</a>
+            <a class="btn btn-secondary" href="#topicos">Ver tópicos de interesse</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <section id="sobre">
+    <div class="wrap">
+      <div class="section-head">
+        <h2>Sobre a proposta</h2>
+      </div>
+
+      <div class="grid-2">
+        <div class="card">
+          <h3>Resumo</h3>
+          <p>
+            Métodos baseados em otimização têm se consolidado como ferramentas centrais na robótica moderna. Formulações como controle preditivo baseado em modelo, técnicas de planejamento e controle ótimo e estratégias de otimização em tempo real permitem integrar, de forma sistemática, controle e planejamento, com tratamento explícito de restrições operacionais e incorporação de requisitos formais de segurança.
+          </p>
+          <p>
+            A crescente complexidade dos sistemas robóticos contemporâneos exige arquiteturas capazes de integrar, de forma consistente, planejamento de movimento, controle dinâmico, restrições e requisitos formais de segurança. Ambientes dinâmicos envolvendo interação física com o meio e coordenação entre múltiplos agentes, por vezes, tornam limitadas abordagens baseadas em camadas rigidamente desacopladas entre planejamento e controle.
+          </p>
+          <div class="highlight">
+            Esta Sessão Especial Aberta busca consolidar no CBA 2026 um espaço técnico dedicado à discussão aprofundada desses avanços. Pretende-se estimular contribuições que aliem rigor teórico, eficiência computacional e validação experimental. Busca-se, ainda, fortalecer a interface entre controle ótimo, métodos numéricos, aprendizado e robótica autônoma, particularmente no contexto da integração entre planejamento e controle.
+          </div>
+        </div>
+
+        <div class="card">
+          <h3>Destaques</h3>
+          <ul class="bullet-list">
+            <li>Tratamento explícito de restrições operacionais e interação com o ambiente</li>
+            <li>Integração entre planejamento e controle dinâmico</li>
+            <li>Formulações multiobjetivo com compromissos entre desempenho e eficiência</li>
+            <li>Incorporação de mecanismos formais de segurança</li>
+            <li>Estrutura algorítmica adequada à implementação em tempo real</li>
+            <li>Aplicações em navegação autônoma, UAVs, manipuladores, humanoides, quadrúpedes e sistemas multirrobôs</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="topicos">
+    <div class="wrap">
+      <div class="section-head">
+        <h2>Tópicos de interesse</h2>
+      </div>
+
+      <div class="card topics-card">
+        <p>
+          A sessão inclui, entre outros, os temas abaixo.
+        </p>
+        <ul class="bullet-list">
+          <li>Métodos baseados em otimização para sistemas robóticos sujeitos a restrições</li>
+          <li>Integração entre planejamento e controle em arquiteturas baseadas em otimização</li>
+          <li>Controle e planejamento sujeitos a restrições cinemáticas, dinâmicas e de contato, incluindo controle de corpo completo</li>
+          <li>Métodos com garantias formais de estabilidade, robustez e segurança</li>
+          <li>Algoritmos e implementações em tempo real para controle e planejamento em sistemas robóticos</li>
+          <li>Integração de técnicas de aprendizado de máquina a métodos baseados em otimização para controle e planejamento</li>
+          <li>Coordenação e controle distribuído de múltiplos robôs com restrições compartilhadas</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section id="organizadores">
+    <div class="wrap">
+      <div class="section-head">
+        <h2>Organizadores</h2>
+        <p>
+          Coordenação da sessão especial.
+        </p>
+      </div>
+
+      <div class="organizers">
+        <div class="person">
+          <div class="person-top">
+            <div class="person-photo">
+              <img src="marcelo.png" alt="Foto de Marcelo Alves dos Santos">
+            </div>
+            <div class="person-main">
+              <h3>Marcelo Alves dos Santos</h3>
+              <div class="affil">Universidade de Bergamo, Itália</div>
+              <div class="person-links">
+                <a href="http://lattes.cnpq.br/7367294855044307" target="_blank" rel="noopener noreferrer" aria-label="Currículo Lattes de Marcelo">
+                  <img src="lattes.png" alt="Lattes">
+                </a>
+                <a href="https://scholar.google.com/citations?user=uUNWyQIAAAAJ" target="_blank" rel="noopener noreferrer" aria-label="Google Scholar de Marcelo">
+                  <img src="scholar.png" alt="Google Scholar">
+                </a>
+                <a href="https://orcid.org/0000-0002-7578-2217" target="_blank" rel="noopener noreferrer" aria-label="ORCID de Marcelo">
+                  <img src="orcid.png" alt="ORCID">
+                </a>
+              </div>
+            </div>
+          </div>
+          <p>
+            Pesquisador na Universidade de Bergamo, desenvolvendo pesquisa em controle preditivo e métodos baseados em otimização aplicados a sistemas robóticos. Atua no avanço de formulações com garantias formais de estabilidade e segurança, com foco na integração entre planejamento e controle e na implementação em tempo real.
+          </p>
+        </div>
+
+        <div class="person">
+          <div class="person-top">
+            <div class="person-photo">
+              <img src="guilherme.png" alt="Foto de Guilherme Vianna Raffo">
+            </div>
+            <div class="person-main">
+              <h3>Guilherme Vianna Raffo</h3>
+              <div class="affil">Universidade Federal de Minas Gerais, Brasil</div>
+              <div class="person-links">
+                <a href="http://lattes.cnpq.br/8001209726245510" target="_blank" rel="noopener noreferrer" aria-label="Currículo Lattes de Guilherme">
+                  <img src="lattes.png" alt="Lattes">
+                </a>
+                <a href="https://scholar.google.com/citations?user=vNiu_5MAAAAJ" target="_blank" rel="noopener noreferrer" aria-label="Google Scholar de Guilherme">
+                  <img src="scholar.png" alt="Google Scholar">
+                </a>
+                <a href="https://orcid.org/0000-0002-1835-8380" target="_blank" rel="noopener noreferrer" aria-label="ORCID de Guilherme">
+                  <img src="orcid.png" alt="ORCID">
+                </a>
+              </div>
+            </div>
+          </div>
+          <p>
+            Professor Associado da Universidade Federal de Minas Gerais, com atuação em controle não linear, controle robusto e controle preditivo aplicados à robótica e a sistemas cooperativos. Sua pesquisa abrange controle ótimo e métodos baseados em conjuntos aplicados ao controle e ao planejamento de sistemas sujeitos a restrições, com foco em robustez e no tratamento de incertezas.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="submissao">
+    <div class="wrap">
+      <div class="submission">
+        <div>
+          <h2>Submissão de trabalhos</h2>
+          <p>
+            Para submeter um artigo a esta sessão especial, acesse a página oficial de submissão do evento e selecione a sessão correspondente durante o processo.
+          </p>
+        </div>
+        <a class="btn btn-primary" href="https://sites.usp.br/cba2026/submissao-de-artigos/" target="_blank" rel="noopener noreferrer">Ir para a submissão</a>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="wrap">
+      <div class="footer-logos">
+        <div class="footer-logo-box">
+          <img src="macro.png" alt="macro@ufmg">
+        </div>
+        <div class="footer-logo-box logo-ufmg">
+          <img src="Logo_UFMG.png" alt="UFMG">
+        </div>
+        <div class="footer-logo-box logo-unibg">
+          <img src="UNIBG_Logo_2018.svg.png" alt="Università degli Studi di Bergamo">
+        </div>
+      </div>
+    </div>
+  </footer>
 
 </body>
-
 </html>
